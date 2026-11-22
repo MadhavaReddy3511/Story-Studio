@@ -1,14 +1,79 @@
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f2ec">
   <title>Story Studio</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Story Studio</h1>
-  <p>My personal screenplay writing workspace.</p>
-  <p>Coming soon!</p>
+  <header class="topbar">
+    <div class="brand">
+      <span class="mark">✦</span>
+      <strong>Story Studio</strong>
+      <span class="divider">/</span>
+      <select id="projectSelect" aria-label="Current story"></select>
+      <button id="newProject" class="subtle" title="Create story">＋ Story</button>
+    </div>
+    <div class="actions">
+      <span id="saveStatus">Saved locally</span>
+      <button id="exportBtn">Export backup</button>
+      <label class="button" for="importFile">Import backup</label>
+      <input id="importFile" type="file" accept="application/json,.json" hidden>
+    </div>
+  </header>
+
+  <div class="workspace">
+    <aside class="sidebar">
+      <nav class="tabs" aria-label="Story sections">
+        <button class="tab active" data-section="story">Story</button>
+        <button class="tab" data-section="characters">Characters</button>
+        <button class="tab" data-section="scenes">Scenes</button>
+        <button class="tab" data-section="ideas">Ideas</button>
+      </nav>
+      <div id="sideContent" class="side-content"></div>
+    </aside>
+
+    <main class="main">
+      <div class="editor-head">
+        <div>
+          <div class="eyebrow">SCREENPLAY</div>
+          <h1 id="scriptTitle">Untitled</h1>
+        </div>
+        <div class="editor-actions">
+          <label for="elementType">Paragraph type</label>
+          <select id="elementType">
+            <option value="scene">Scene heading</option>
+            <option value="action">Action</option>
+            <option value="character">Character</option>
+            <option value="dialogue">Dialogue</option>
+            <option value="parenthetical">Parenthetical</option>
+            <option value="transition">Transition</option>
+          </select>
+          <button id="addBlock">+ Paragraph</button>
+          <button id="fountainBtn">Export .fountain</button>
+        </div>
+      </div>
+
+      <div class="hint">
+        Click any paragraph to edit.
+        <kbd>Enter</kbd> creates the next paragraph ·
+        <kbd>Tab</kbd> changes paragraph type ·
+        <kbd>Ctrl/⌘ + Z</kbd> uses browser undo.
+      </div>
+
+      <div class="paper-wrap">
+        <div id="screenplay" class="paper" aria-label="Screenplay editor"></div>
+      </div>
+    </main>
+  </div>
+
+  <template id="empty">
+    <div class="empty">Nothing here yet.</div>
+  </template>
+
+  <script src="script.js"></script>
 </body>
 </html>
